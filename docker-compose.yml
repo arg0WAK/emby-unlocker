@@ -1,0 +1,33 @@
+version: "2.3"
+
+networks:
+  eth0:
+    driver: bridge
+x-common-settings: &common-settings
+  networks:
+    - eth0
+  environment:
+    - UID=1000
+    - GID=100
+    - GIDLIST=100
+  volumes:
+    - ~/emby-data/config:/config # Configuration directory
+    - ~/emby-data/tvshows:/mnt/share1 # Media directory
+    - ~/emby-data/movies:/mnt/share2 # Media directory
+    - ~/emby-data/system/network:/system/dashboard-ui/network # Don't change this
+  restart: on-failure
+services: 
+  emby:
+    <<: *common-settings
+    image: emby/embyserver
+    container_name: embyserver
+  premiere:
+      <<: *common-settings
+      container_name: premiere
+      build:
+        context: .
+        dockerfile: Dockerfile
+        args:
+          PROXY_PORT: 8097 # The port to run emby on (default: 8097)
+      ports:
+        - 1337:8097 # Outside port
