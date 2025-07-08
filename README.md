@@ -41,7 +41,7 @@ Bypass the handshake error with `Proceed to mb3admin.com (unsafe)`
 A JSON response like the following should be returned from the `GET` request
 
 ```JSON
- { "PROXY": "OK"}
+ {"PROXY": "OK"}
 ```
 
 You must be check specified outside port after docker build. If you see Emby Media Server wizard page complete the configuration also check Emby Premiere tab below Settings page.
