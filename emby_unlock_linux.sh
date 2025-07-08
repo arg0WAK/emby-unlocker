@@ -82,7 +82,7 @@ echo "${YELLOW}[ℹ]${RESET} Testing network connectivity..."
 sleep 10
 IP_MB3ADMIN=$(ping -c 1 mb3admin.com | sed -nE 's/^PING[^(]+\(([^)]+)\).*/\1/p')
 
-if [ "$IP_MB3ADMIN" == "$IP_ARG0" ]; then
+if [ "$IP_MB3ADMIN" = "$IP_ARG0" ]; then
     echo "${GREEN}[✔]${RESET} Both domains match the same IP address: $IP_MB3ADMIN"
 else
     echo "${RED}[✖]${RESET} The domains do not match the same IP address. Please flush your DNS cache manually."
